@@ -1,0 +1,33 @@
+In[217]:= ClearAll;
+n0=1.1;αx=0;αy=0;αz=0.5*10^(-3);
+n[x_,y_,z_]:=n0-αx*x-αy*y-αz*z;
+sm=2*10^3;
+θ=60°;ϕ=0°;
+equ={D[n[x[s],y[s],z[s]]*x'[s],s]==D[n[x_,y_,z_],x_],
+       D[n[x[s],y[s],z[s]]*y'[s],s]==D[n[x_,y_,z_],y_],
+       D[n[x[s],y[s],z[s]]*z'[s],s]==D[n[x_,y_,z_],z_],
+x[0]==0,y[0]==0,z[0]==0,x'[0]==Sin[θ]*Cos[ϕ],y'[0]==Sin[θ]*Sin[ϕ],z'[0]==Cos[θ]};
+sol=NDSolve[equ,{x[s],y[s],z[s]},{s,0,sm}];
+Print[sm]
+ParametricPlot3D[{x[s],y[s],z[s]}/.sol[[1]],{s,0,sm},AxesLabel->{"X","Y","Z"}]
+
+
+\:6B63\:5728\:8BA1\:7B97In[217]:= 2000
+Out[225]= 
+
+
+
+NDSolve::ndsz: 在 s == 710.1179465696349` 处，步长实际上为零；可能存在奇点或者刚性系统.
+
+
+
+
+
+
+
+
+
+
+
+
+
